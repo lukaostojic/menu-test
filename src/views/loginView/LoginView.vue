@@ -8,11 +8,11 @@
       <h2 class="login__heading">Sign in</h2>
       <p class="mb-3">Please enter your email and password</p>
       <Form @submit="onSubmit" class="login__form form-validation d-flex flex-column">
-        <Field :rules="emailValidation" @keyup="moveElements" name="email" type="email" placeholder="Your email address" class=""/>
+        <Field :rules="emailValidation" @keyup="moveElements" name="email" type="email" placeholder="Your email address"/>
         <ErrorMessage name="email" />
         <Field :rules="passwordValidation" @keyup="moveElements" name="password" type="password" placeholder="Password" class="mt-2"/>
         <ErrorMessage name="password" />
-        <button @click="onSubmit" class="mt-3">Sign in</button>
+        <button @click="onSubmit" class="btn btn--primary mt-3">Sign in</button>
       </Form>
     </div>
   </div>
@@ -20,9 +20,8 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { Form, Field, ErrorMessage  } from 'vee-validate'
+import { Form, Field, ErrorMessage } from 'vee-validate'
 import { login } from '@/services/localStorage'
-import { LoginInfo } from '@/interfaces/login'
 import { RoutesMain } from '@/enums/routes'
 import { validateEmail, validatePassword } from '@/configs/vee-validate-rules'
 
@@ -41,13 +40,13 @@ export default defineComponent({
     }
   },
   methods: {
-    emailValidation(value: string) {
+    emailValidation(value) {
       return validateEmail(value)
     },
-    passwordValidation(value: string) {
+    passwordValidation(value) {
       return validatePassword(value)
     },
-    onSubmit(values: LoginInfo) {
+    onSubmit(values) {
       if (values.email !== undefined) {
         login(values.email)
         this.$router.push({name: RoutesMain.Dashboard})
@@ -65,7 +64,7 @@ export default defineComponent({
 
         const children = Array.from(containerEl.children)
         children.forEach((child) => {
-          const rg = (max, min) => Math.floor(Math.random() * (max - min + 1) + min);
+          const rg = (max: number, min: number) => Math.floor(Math.random() * (max - min + 1) + min);
           (child as HTMLElement).style.transform = `translate(${rg(vw, 100)}px,${rg(vh, 100)}px) rotate(${rg(360, 0)}deg)`;
           (child as HTMLElement).style.width = `${rg(60, 15)}px`;
           (child as HTMLElement).style.height = `${rg(60, 15)}px`;
@@ -74,7 +73,7 @@ export default defineComponent({
     },
   },
   mounted() {
-    this.container = this.$refs.container as HTMLElement;
+    this.container = this.$refs.container as HTMLElement
   },
 })
 </script>

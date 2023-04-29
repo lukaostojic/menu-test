@@ -69,15 +69,15 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.07);
 
     span:nth-child(1) {
-      flex: 1 1 50%;
+      width: 50%;
     }
 
     span:nth-child(2) {
-      flex: 1 1 25%;
+      width: 25%;
     }
 
     span:nth-child(3) {
-      flex: 1 1 25%;
+      width: 25%;
     }
   }
 }

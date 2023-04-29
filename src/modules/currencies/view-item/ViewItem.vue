@@ -3,7 +3,7 @@
     <span class="text-capitalize font-600">{{ currency?.name }}</span>
     <span class="text-uppercase">{{ currency?.code }}</span>
     <span>{{ currency?.symbol }}</span>
-    <div @click="deleteCurrency()" class="delete-icon d-flex align-center p-absolute">
+    <div @click="deleteCurrency()" class="currency-item__delete-icon d-flex align-center p-absolute">
       <img src="@/assets/global/bin.png" alt="">
     </div>
   </div>

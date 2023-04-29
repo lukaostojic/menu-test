@@ -3,8 +3,8 @@
     <div class="currency-add__heading d-flex justify-between align-center px-3 py-1">
       <h3>Add Currency</h3>
       <div>
-        <button @click="closeForm" class="cancel mr-1">Cancel</button>
-        <button @click="triggerSubmit" class="add">Add</button>
+        <button @click="closeForm" class="btn btn--default mr-1">Cancel</button>
+        <button @click="triggerSubmit" class="btn btn--primary">Add</button>
       </div>
     </div>
     <Form @submit="onSubmit" :initial-values="formValues" class="currency-add__form form-validation d-flex flex-column px-3">
@@ -25,7 +25,6 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
 import { Form, Field, ErrorMessage } from 'vee-validate'
-import { Refs } from '@/interfaces/html-element'
 import { Currency } from '@/interfaces/currency'
 import { RoutesNavigation } from '@/enums/routes'
 import { Errors } from '@/enums/input-errors'
@@ -49,22 +48,27 @@ export default defineComponent({
     isEdit: {
       type: Boolean,
       required: true
+    },
+  },
+  data() {
+    return {
+      submitButton: null as HTMLElement | null,
     }
   },
   methods: {
-    requiredValidation(value: string) {
+    requiredValidation(value) {
       return validateRequired(value)
     },
-    codeValidation(value: string) {
+    codeValidation(value) {
       if (!this.isEdit && this.currencies.some((currency: Currency) => currency.code === value)) {
         return Errors.UniqueCode
       }
       return validateCode(value)
     },
-    symbolValidation(value: string) {
+    symbolValidation(value) {
       return validateSymbol(value)
     },
-    onSubmit(values: Currency, actions) {
+    onSubmit(values, actions) {
       values.id = this.id
       this.$store.dispatch('CurrenciesModule/getCurrencyInfo', values)
       actions.setValues({
@@ -80,7 +84,7 @@ export default defineComponent({
       this.$emit('onCloseForm')
     },
     triggerSubmit() {
-      (this.$refs.submitBtn as Refs['submitBtn']).click()
+      this.submitButton?.click()
     }
   },
   computed: {
@@ -88,6 +92,11 @@ export default defineComponent({
       return this.currencies.find((item: Currency) => item.id === this.id)
     }
   },
+  created() {
+    setTimeout(() => {
+      this.submitButton = this.$refs.submitBtn as HTMLElement
+    })
+  }
 })
 </script>
 

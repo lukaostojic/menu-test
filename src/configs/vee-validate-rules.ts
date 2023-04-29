@@ -1,22 +1,16 @@
 import { Errors } from '@/enums/input-errors'
 import { MAX_CODE_LENGTH, MAX_SYMBOL_LENGTH, EMAIL_REGEX, MIN_PASS_LENGTH } from '@/constants'
 
-const isRequired = (value: string) => {
+export const validateRequired = (value: string) => {
   if (!value) {
     return Errors.Required
-  }
-}
-
-export const validateRequired = (value: string) => {
-  if (isRequired(value)) {
-    return isRequired(value);
   }
   return true
 }
 
 export const validateCode = (value: string) => {
-  if (isRequired(value)) {
-    return isRequired(value);
+  if (!value) {
+    return Errors.Required
   }
   if (value && value.length !== MAX_CODE_LENGTH) {
     return Errors.Code
@@ -25,8 +19,8 @@ export const validateCode = (value: string) => {
 }
 
 export const validateSymbol = (value: string) => {
-  if (isRequired(value)) {
-    return isRequired(value);
+  if (!value) {
+    return Errors.Required
   }
   if (value && value.length > MAX_SYMBOL_LENGTH) {
     return Errors.Symbol
@@ -35,8 +29,8 @@ export const validateSymbol = (value: string) => {
 }
 
 export const validateEmail = (value: string) => {
-  if (isRequired(value)) {
-    return isRequired(value);
+  if (!value) {
+    return Errors.Required
   }
   if (!EMAIL_REGEX.test(value)) {
     return Errors.Email
@@ -45,8 +39,8 @@ export const validateEmail = (value: string) => {
 }
 
 export const validatePassword = (value: string) => {
-  if (isRequired(value)) {
-    return isRequired(value);
+  if (!value) {
+    return Errors.Required
   }
   if (value && value.length < MIN_PASS_LENGTH) {
     return Errors.Password
