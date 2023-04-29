@@ -1,0 +1,32 @@
+.currency-add {
+  min-width: 44rem;
+  border-left: 1px solid $color-border-main;
+
+  &__heading {
+    border-bottom: 1px solid $color-border-main;
+
+    button {
+      padding: 0.7rem 1.2rem;
+
+      &.cancel {
+        border: 1px solid $color-border-main;
+        background: $color-white;
+      }
+
+      &.add {
+        background: $color-orange-dark;
+        color: $color-white;
+      }
+    }
+  }
+
+  &__form {
+
+    label {
+      margin-top: 1.7rem;
+      margin-bottom: 0.4rem;
+      color: $color-font-dark;
+      font-weight: 600;
+    }
+  }
+}

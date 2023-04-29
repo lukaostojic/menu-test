@@ -1,0 +1,25 @@
+.nav {
+  min-width: $nav-width;
+  height: calc(100vh - $header-height);
+  background: $color-nav;
+
+  &__item {
+    margin-top: 4px;
+
+    a {
+      border-radius: 4px;
+    }
+
+    span {
+      color: $color-font-dark;
+    }
+  }
+}
+
+.router-link-active {
+  background: #F3E8E1;
+  
+  span {
+    color: $color-orange-dark;
+  }
+}

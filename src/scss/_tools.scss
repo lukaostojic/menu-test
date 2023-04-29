@@ -1,0 +1,70 @@
+$spacer: 1rem !default;
+$spaceamounts: (
+  1: ($spacer * 1),
+  2: ($spacer * 1.6),
+  3: ($spacer * 2.4),
+  4: ($spacer * 3.2),
+  5: ($spacer * 4.0)
+);
+
+@each $space, $value in $spaceamounts {
+  .m-#{$space} {
+      margin: #{$value};
+  }
+
+  .mx-#{$space} {
+      margin-left: #{$value};
+      margin-right: #{$value};
+  }
+
+  .my-#{$space} {
+      margin-top: #{$value};
+      margin-bottom: #{$value};
+  }
+
+  .ml-#{$space} {
+      margin-left: #{$value};
+  }
+
+  .mr-#{$space} {
+      margin-right: #{$value};
+  }
+
+  .mb-#{$space} {
+      margin-bottom: #{$value};
+  }
+
+  .mt-#{$space} {
+      margin-top: #{$value};
+  }
+
+  .p-#{$space} {
+      padding: #{$value};
+  }
+
+  .px-#{$space} {
+      padding-left: #{$value};
+      padding-right: #{$value};
+  }
+
+  .py-#{$space} {
+      padding-top: #{$value};
+      padding-bottom: #{$value};
+  }
+
+  .pl-#{$space} {
+      padding-left: #{$value};
+  }
+
+  .pr-#{$space} {
+      padding-right: #{$value};
+  }
+
+  .pb-#{$space} {
+      padding-bottom: #{$value};
+  }
+
+  .pt-#{$space} {
+      padding-top: #{$value};
+  }
+}

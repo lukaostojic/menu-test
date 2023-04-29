@@ -1,0 +1,29 @@
+.header {
+  height: $header-height;
+  border-bottom: 1px solid $color-border-main;
+
+  &__brand {
+    
+    .avatar {
+      width: 3.2rem;
+      height: 3.2rem;
+      margin-right: 1rem;
+      border-radius: 100%;
+      line-height: 32px;
+      color: $color-white;
+    }
+
+    p:nth-child(2) {
+      color: $color-font-dark;
+    }
+  }
+
+  &__info {
+
+    button {
+      padding: 0.7rem 1.2rem;
+      background: rgb(255, 102, 0);
+      color: #fff;
+    }
+  }
+}

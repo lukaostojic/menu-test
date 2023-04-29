@@ -1,0 +1,43 @@
+.currency-item {
+  padding: 0.8rem 0;
+  border-bottom: 1px solid $color-border-light;
+  cursor: pointer;
+
+  .click-area {
+    width: calc(100% - 50px);
+    height: 35px;
+    top: 0;
+    left: 0;
+  }
+
+  &:hover, &.active {
+    background-color: rgba(0, 0, 0, 0.03);
+  }
+
+    span:nth-child(1) {
+      flex: 1 1 50%;
+      color: $color-font-dark;
+    }
+
+    span:nth-child(2) {
+      flex: 1 1 25%;
+    }
+
+    span:nth-child(3) {
+      flex: 1 1 25%;
+    }
+
+    .delete-icon {
+      left: calc(100% - 27px);
+      top: 0.34rem;
+      padding: 5px;
+      border-radius: 4px;
+      cursor: pointer;
+      z-index: 5;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+    }
+
+}
