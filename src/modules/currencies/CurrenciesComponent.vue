@@ -27,6 +27,7 @@
     <router-view
       @onAddItem="updateList" 
       @onCloseForm="activeItem = null" 
+      :key="$route.fullPath"
       :id="activeItem" 
       :currencies="currencies"
       :isEdit="isEdit"></router-view>
@@ -90,7 +91,7 @@ export default defineComponent({
   computed: {
     ...mapState('CurrenciesModule', {
       currencies: 'currencies'
-    }),
+    })
   },
   mounted() {
     this.$store.dispatch('CurrenciesModule/getCurrencies')

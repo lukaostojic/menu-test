@@ -36,7 +36,7 @@ export default defineComponent({
   },
   data() {
     return {
-      container: null as HTMLElement | null,
+      container: null as HTMLElement | null
     }
   },
   methods: {
@@ -53,13 +53,13 @@ export default defineComponent({
       }
     },
     moveElements() {
-      const containerEl = this.container;
+      const containerEl = this.container
 
       if (containerEl) {
         for (const _ of Array.from({ length: 2 })) {
-          const newDiv = document.createElement('div');
-          newDiv.classList.add('element');
-          containerEl.appendChild(newDiv);
+          const newDiv = document.createElement('div')
+          newDiv.classList.add('element')
+          containerEl.appendChild(newDiv)
         }
 
         const children = Array.from(containerEl.children)
@@ -68,9 +68,9 @@ export default defineComponent({
           (child as HTMLElement).style.transform = `translate(${rg(vw, 100)}px,${rg(vh, 100)}px) rotate(${rg(360, 0)}deg)`;
           (child as HTMLElement).style.width = `${rg(60, 15)}px`;
           (child as HTMLElement).style.height = `${rg(60, 15)}px`;
-        });
+        })
       }
-    },
+    }
   },
   mounted() {
     this.container = this.$refs.container as HTMLElement

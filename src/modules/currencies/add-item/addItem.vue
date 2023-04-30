@@ -12,7 +12,7 @@
       <Field :rules="requiredValidation" type="text" name="name" placeholder="Add name"/>
       <ErrorMessage name="name" />
       <label class="font-600" for="code">Currency code</label>
-      <Field :rules="codeValidation" :disabled="isEdit" type="text" name="code" placeholder="e.g. USD"/>
+      <Field :rules="codeValidation" type="text" name="code" placeholder="e.g. USD"/>
       <ErrorMessage name="code" />
       <label class="font-600" for="symbol">Currency symbol</label>
       <Field :rules="symbolValidation" type="text" name="symbol" placeholder="Add symbol"/>
@@ -34,12 +34,11 @@ export default defineComponent({
   components: {
     Form,
     Field,
-    ErrorMessage,
+    ErrorMessage
   },
   props: {
     id: {
-      type: Number,
-      required: true
+      type: Number
     },
     currencies: {
       type: Array as PropType<Currency[]>,
@@ -48,11 +47,11 @@ export default defineComponent({
     isEdit: {
       type: Boolean,
       required: true
-    },
+    }
   },
   data() {
     return {
-      submitButton: null as HTMLElement | null,
+      submitButton: null as HTMLElement | null
     }
   },
   methods: {
@@ -61,6 +60,8 @@ export default defineComponent({
     },
     codeValidation(value) {
       if (!this.isEdit && this.currencies.some((currency: Currency) => currency.code === value)) {
+        return Errors.UniqueCode
+      } else if (this.isEdit && this.currencies.some((currency: Currency) => currency.code === value && currency.id !== this.formValues?.id)) {
         return Errors.UniqueCode
       }
       return validateCode(value)

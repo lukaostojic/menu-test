@@ -16,7 +16,7 @@ import NavigationComponent from '@/modules/navigation/NavigationComponent.vue'
 export default defineComponent({
   components: {
     HeaderComponent,
-    NavigationComponent,
+    NavigationComponent
   }
 })
 </script>
