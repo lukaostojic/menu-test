@@ -59,9 +59,13 @@ export default defineComponent({
       return validateRequired(value)
     },
     codeValidation(value) {
-      if (!this.isEdit && this.currencies.some((currency: Currency) => currency.code === value)) {
+      const isCodeUnique = (currency: Currency) => currency.code === value
+      const isEditingCurrency = (currency: Currency) => currency.id === this.formValues?.id
+      
+      if (!this.isEdit && this.currencies.some(isCodeUnique)) {
         return Errors.UniqueCode
-      } else if (this.isEdit && this.currencies.some((currency: Currency) => currency.code === value && currency.id !== this.formValues?.id)) {
+      } 
+      if (this.isEdit && this.currencies.some(currency => isCodeUnique(currency) && !isEditingCurrency(currency))) {
         return Errors.UniqueCode
       }
       return validateCode(value)
@@ -93,10 +97,8 @@ export default defineComponent({
       return this.currencies.find((item: Currency) => item.id === this.id)
     }
   },
-  created() {
-    setTimeout(() => {
-      this.submitButton = this.$refs.submitBtn as HTMLElement
-    })
+  mounted() {
+    this.submitButton = this.$refs.submitBtn as HTMLElement
   }
 })
 </script>

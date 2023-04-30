@@ -10,6 +10,37 @@ input {
   }
 }
 
+.search-input {
+
+  &:before, &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    pointer-events: none;
+  }
+
+  &:before {
+    top: 9px;
+    left: 9px;
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    border: 2px solid #a3a3a3;
+  }
+
+  &:after {
+    top: 21px;
+    left: 20px;
+    width: 3px;
+    border: 1px solid #a3a3a3;
+    transform: rotateZ(45deg);
+  }
+
+  input {
+    padding-left: 3rem;
+  }
+}
+
 button.btn {
   height: 3.4rem;
   padding: 0.7rem 1.2rem;
@@ -26,6 +57,30 @@ button.btn {
     border: 1px solid $color-border-main;
     background: $color-white;
     box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.06);
+  }
+
+  &--add {
+    padding: 7px 12px 7px 26px;
+
+    &:after, &:before {
+      content: '';
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      pointer-events: none;
+    }
+
+    &:before {
+      border-top: 2px solid $color-white;
+      left: 9px;
+      top: 16px;
+    }
+
+    &:after {
+      border-left: 2px solid $color-white;
+      left: 13px;
+      top: 12px;
+    }
   }
 }
 
