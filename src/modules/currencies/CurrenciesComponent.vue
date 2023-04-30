@@ -5,9 +5,7 @@
         <h1>Currencies</h1>
         <button @click="addNewCurrency" class="btn btn--primary btn--add p-relative">Add Currency</button>
       </div>
-      <div class="currencies__search search-input p-relative">
-        <input v-model="searchQuery" @keyup="searchCurrencies" type="text" placeholder="Search">
-      </div>
+      <search-component :searchItems="currencies" :width="300" @onKeyUp="getSearchResult" class="search"></search-component>
       <div class="currencies__list d-flex mt-4 pb-1">
         <span class="text-uppercase font-sm font-600">currency name</span>
         <span class="text-uppercase font-sm font-600">currency code</span>
@@ -37,13 +35,15 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import ViewItem from '@/modules/currencies/view-item/ViewItem.vue'
+import SearchComponent from '@/modules/shared/search/SearchComponent.vue'
 import { mapState } from 'vuex'
 import { Currency } from '@/interfaces/currency'
 import { RoutesCurrencies } from '@/enums/routes'
 
 export default defineComponent({
   components: {
-    ViewItem
+    ViewItem,
+    SearchComponent
   },
   data() {
     return {
@@ -72,12 +72,8 @@ export default defineComponent({
       }, 0)
       this.$router.push({ name: RoutesCurrencies.AddItem, params: { id: this.activeItem } })
     },
-    searchCurrencies() {
-      this.currencyList = this.currencies.filter((item: Currency) => {
-        return Object.values(item).some((value) => {
-          return String(value).toLowerCase().includes(this.searchQuery.toLowerCase())
-        })
-      })
+    getSearchResult(val: Currency[]) {
+      this.currencyList = val
     },
     updateList() {
       this.currencyList = this.currencies
