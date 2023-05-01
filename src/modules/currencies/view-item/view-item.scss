@@ -7,30 +7,29 @@
     background-color: $color-table-hover;
   }
 
-    span:nth-child(1) {
-      width: 50%;
-      color: $color-font-dark;
+  span:nth-child(1) {
+    width: 50%;
+    color: $color-font-dark;
+  }
+
+  span:nth-child(2) {
+    width: 25%;
+  }
+
+  span:nth-child(3) {
+    width: 25%;
+  }
+
+  &__delete-icon {
+    left: calc(100% - 27px);
+    top: 0.34rem;
+    padding: 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    z-index: 5;
+
+    &:hover {
+      background-color: $color-border-light;
     }
-
-    span:nth-child(2) {
-      width: 25%;
-    }
-
-    span:nth-child(3) {
-      width: 25%;
-    }
-
-    &__delete-icon {
-      left: calc(100% - 27px);
-      top: 0.34rem;
-      padding: 0.5rem;
-      border-radius: 4px;
-      cursor: pointer;
-      z-index: 5;
-
-      &:hover {
-        background-color: $color-border-light;
-      }
-    }
-
+  }
 }
