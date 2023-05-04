@@ -1,5 +1,5 @@
 import { Errors } from '@/enums/input-errors'
-import { MAX_CODE_LENGTH, MAX_SYMBOL_LENGTH, EMAIL_REGEX, MIN_PASS_LENGTH } from '@/constants'
+import { CODE_LENGTH, MAX_SYMBOL_LENGTH, EMAIL_REGEX, MIN_PASS_LENGTH } from '@/common/constants'
 
 export const validateRequired = (value: string) => {
   if (!value) {
@@ -12,7 +12,7 @@ export const validateCode = (value: string) => {
   if (!value) {
     return Errors.Required
   }
-  if (value && value.length !== MAX_CODE_LENGTH) {
+  if (value && value.length !== CODE_LENGTH) {
     return Errors.Code
   }
   return true

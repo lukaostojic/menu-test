@@ -21,7 +21,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { Form, Field, ErrorMessage } from 'vee-validate'
-import { login } from '@/services/localStorage'
+import LocalStorageService from '@/services/localStorage'
 import { RoutesMain } from '@/enums/routes'
 import { validateEmail, validatePassword } from '@/configs/vee-validate-rules'
 
@@ -48,12 +48,13 @@ export default defineComponent({
     },
     onSubmit(values) {
       if (values.email !== undefined) {
-        login(values.email)
+        LocalStorageService.login(values.email)
         this.$router.push({name: RoutesMain.Dashboard})
       }
     },
     moveElements() {
       const containerEl = this.container
+      const rg = (max: number, min: number) => Math.floor(Math.random() * (max - min + 1) + min)
 
       if (containerEl) {
         for (const _ of Array.from({ length: 2 })) {
@@ -63,8 +64,7 @@ export default defineComponent({
         }
 
         const children = Array.from(containerEl.children)
-        children.forEach((child) => {
-          const rg = (max: number, min: number) => Math.floor(Math.random() * (max - min + 1) + min);
+        children.forEach((child) => { 
           (child as HTMLElement).style.transform = `translate(${rg(vw, 100)}px,${rg(vh, 100)}px) rotate(${rg(360, 0)}deg)`;
           (child as HTMLElement).style.width = `${rg(60, 15)}px`;
           (child as HTMLElement).style.height = `${rg(60, 15)}px`;

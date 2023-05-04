@@ -1,4 +1,4 @@
-import AddItem from '@/modules/currencies/add-item/addItem.vue'
+import AddItem from '@/modules/currencies/add-item/AddItem.vue'
 import { RoutesCurrencies } from '@/enums/routes'
 
 export const CurrenciesRoutes = [

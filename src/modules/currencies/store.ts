@@ -1,4 +1,4 @@
-import { storeCurrencies, getCurrencies } from '@/services/localStorage'
+import localStorageService from '@/services/localStorage'
 import { Currency } from '@/interfaces/currency'
 
 export default {
@@ -13,7 +13,7 @@ export default {
   },
   actions: {
     getCurrencyInfo({commit}, currencyInfo: Currency) {
-      const currencies = getCurrencies()
+      const currencies = localStorageService.getCurrencies()
       const index = currencies.findIndex(
         (currency: Currency) => currency.id === currencyInfo.id
       );
@@ -24,20 +24,20 @@ export default {
           ...currencies.slice(index + 1)
         ]
         commit('setCurrencies', updatedCurrencies)
-        storeCurrencies(updatedCurrencies)
+        localStorageService.storeCurrencies(updatedCurrencies)
       } else {
         currencies.push(currencyInfo)
         commit('setCurrencies', currencies)
-        storeCurrencies(currencies)
+        localStorageService.storeCurrencies(currencies)
       }
     },
     getCurrencies({commit}) {
-      commit('setCurrencies', getCurrencies())
+      commit('setCurrencies', localStorageService.getCurrencies())
     },
     deleteCurrency({ commit, state }, id: number) {
       const currencies = state.currencies.filter((currency: Currency) => currency.id !== id)
       commit('setCurrencies', currencies)
-      storeCurrencies(currencies)
+      localStorageService.storeCurrencies(currencies)
     },
   }
 }

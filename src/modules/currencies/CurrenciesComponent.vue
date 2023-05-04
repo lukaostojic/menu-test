@@ -1,7 +1,7 @@
 <template>
   <div class="d-flex w-100">
     <div class="currencies w-100 p-4">
-      <div class="currencies__heading d-flex justify-between align-center mb-3">
+      <div class="d-flex justify-between align-center mb-3">
         <h1>Currencies</h1>
         <button @click="addNewCurrency" class="btn btn--primary btn--add p-relative">Add Currency</button>
       </div>
@@ -48,7 +48,6 @@ export default defineComponent({
   data() {
     return {
       activeItem: null as number | null,
-      searchQuery: '',
       currencyList: [] as Currency[],
       isEdit: false,
       clickable: true

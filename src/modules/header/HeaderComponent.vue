@@ -12,20 +12,20 @@
     <div class="d-flex align-center">
       <img class="ml-3" src="@/assets/global/bell.png" alt="notifications">
       <img class="ml-3" src="@/assets/global/user.png" alt="user">
-      <button @click="signOut" class="btn btn--primary ml-3">Logout</button>
+      <button @click="logout" class="btn btn--primary ml-3">Logout</button>
     </div>
   </header>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { logout } from '@/services/localStorage'
+import localStorageService from '@/services/localStorage'
 import { RoutesMain } from '@/enums/routes'
 
 export default defineComponent({
   methods: {
-    signOut() {
-      logout()
+    logout() {
+      localStorageService.logout()
       this.$router.push({name: RoutesMain.Login})
     }
   }

@@ -3,6 +3,7 @@ import LoginView from '@/views/loginView/LoginView.vue'
 import DashboardView from '@/views/dashboardView/DashboardView.vue'
 import { RoutesMain } from '@/enums/routes'
 import { NavigationRoutes } from '@/modules/navigation/routes'
+import LocalStorageService from '@/services/localStorage'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -25,7 +26,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  const user = localStorage.getItem('user')
+  const user: string | null = LocalStorageService.getUser()
   if (to.name !== RoutesMain.Login && !user) {
     next({ name: RoutesMain.Login })
   } else if (to.name === RoutesMain.Login && user) {
